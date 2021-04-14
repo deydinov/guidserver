@@ -1,7 +1,7 @@
 # guidserver
 Guid server provides lightweight REST API for generation of GUID
 
-##How to use
+## How to use
 To retreive one GUID from the system it is enought to call 
 https://{host}/guid/
 
@@ -31,7 +31,7 @@ curl --location --request GET 'https://localhost:5001/guid/5
     "6f7637ee-f169-41c3-88ea-d8c02dc2989d",
 ]
 
-##Additional query parameters
+## Additional query parameters
 
 upperCase=false - format GUID output with UPPER CASE
 '''json
