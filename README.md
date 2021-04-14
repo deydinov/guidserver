@@ -57,3 +57,6 @@ registryFormat=true - produces GUID in a registry form (wrapped with the {} brac
 ]
 
 curl --location --request GET 'https://localhost/guid/5?upperCase=true&base64Encode=true&registryFormat=true' \
+
+## Try
+curl --location --request GET 'https://guid-service.azurewebsites.net/guid/5?upperCase=true&base64Encode=false&registryFormat=true' \
