@@ -1,12 +1,13 @@
 # guidserver
-Guid server provides lightweight REST API for generation of GUID
+Guid server provides lightweight REST API for generation of UUID (GUID)
+https://en.wikipedia.org/wiki/Universally_unique_identifier
 
 ## How to use
-To retreive one GUID from the system it is enought to call https://{host}/guid/
+To retreive one UUID from the system it is enought to call `https://{host}/guid/`
 
-`curl --location --request GET 'https://localhost:5001/guid`
+`curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid`
 
-will provide you with following response
+will provide you response with one UUID
 
 ```json
 [
@@ -14,13 +15,11 @@ will provide you with following response
 ]
 ```
 
-To retreive more than one GUID from the system it is enought to call https://{host}/guid/n
+To retreive more than one GUID from the system it is enought to call `https://{host}/guid/n` where n - it is a number of UUID (limited with 100 but you can change it)
 
-where n - it is a number of guids (limited with 100 but you can change it)
+`curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid/5`
 
-`curl --location --request GET 'https://localhost:5001/guid/5`
-
-will provide you with following response
+will provide you response consists 5 UUID
 
 ```json
 [
@@ -34,28 +33,26 @@ will provide you with following response
 
 ## Additional query parameters
 
-`upperCase=false` - format GUID into UPPER CASE output
+`upperCase=false` - format UUID into UPPER CASE output
 ```json
 [
     "514EF2A2-73F5-4851-A39D-0CAB68E090F1"
 ]
 ```
 
-`base64Encode=false` - encode each GUID into base64 string
+`base64Encode=false` - encode each UUID into base64 string
 ```json[
     "ezE4MDFCNzYyLTYzRjQtNEMxMC1BMDZCLUQ4QTYyOTlBNUE5MX0"
 ]
 ```
 
-`registryFormat=true` - produces GUID in a registry form (wrapped with the {} brackets)
+`registryFormat=true` - produces UUID in a registry form (wrapped with the curly brackets)
 ```json
 [
     "{514EF2A2-73F5-4851-A39D-0CAB68E090F1}"
 ]
 ```
 
-`curl --location --request GET 'https://localhost/guid/5?upperCase=true&base64Encode=true&registryFormat=true'`
-
 ## Live Demo
 
-`curl --location --request GET 'https://guid-service.azurewebsites.net/guid/10/?upperCase=true&base64Encode=false&registryFormat=true'`
+`curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid/10/?upperCase=true&base64Encode=false&registryFormat=true`
