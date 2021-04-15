@@ -41,7 +41,8 @@ will provide you response consists 5 UUID
 ```
 
 `base64Encode=false` - encode each UUID into base64 string
-```json[
+```json
+[
     "ezE4MDFCNzYyLTYzRjQtNEMxMC1BMDZCLUQ4QTYyOTlBNUE5MX0"
 ]
 ```
