@@ -14,12 +14,13 @@ will provide you with following response
 ]
 ```
 
-
 To retreive more than one GUID from the system it is enought to call https://{host}/guid/n
 
 where n - it is a number of guids (limited with 100 but you can change it)
 
 `curl --location --request GET 'https://localhost:5001/guid/5`
+
+will provide you with following response
 
 ```json
 [
@@ -33,20 +34,20 @@ where n - it is a number of guids (limited with 100 but you can change it)
 
 ## Additional query parameters
 
-upperCase=false - format GUID output with UPPER CASE
+`upperCase=false` - format GUID into UPPER CASE output
 ```json
 [
-    "{514EF2A2-73F5-4851-A39D-0CAB68E090F1}"
+    "514EF2A2-73F5-4851-A39D-0CAB68E090F1"
 ]
 ```
 
-base64Encode=false - encode each GUID into base64 string
+`base64Encode=false` - encode each GUID into base64 string
 ```json[
     "ezE4MDFCNzYyLTYzRjQtNEMxMC1BMDZCLUQ4QTYyOTlBNUE5MX0"
 ]
 ```
 
-registryFormat=true - produces GUID in a registry form (wrapped with the {} brackets)
+`registryFormat=true` - produces GUID in a registry form (wrapped with the {} brackets)
 ```json
 [
     "{514EF2A2-73F5-4851-A39D-0CAB68E090F1}"
@@ -57,4 +58,4 @@ registryFormat=true - produces GUID in a registry form (wrapped with the {} brac
 
 ## Live Demo
 
-`curl --location --request GET 'https://guid-service.azurewebsites.net/guid/5?upperCase=true&base64Encode=false&registryFormat=true'`
+`curl --location --request GET 'https://guid-service.azurewebsites.net/guid/10/?upperCase=true&base64Encode=false&registryFormat=true'`
