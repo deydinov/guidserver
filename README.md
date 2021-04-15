@@ -58,4 +58,5 @@ will provide you response consists 5 UUID
 ## Live Demo
 
 `curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid/7/?shortUid=true`
+
 `curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid/3/?upperCase=true&registryFormat=true`
