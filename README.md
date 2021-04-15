@@ -33,17 +33,18 @@ will provide you response consists 5 UUID
 
 ## Additional query parameters
 
-`upperCase=false` - format UUID into UPPER CASE output
+`shortUid=true` - generate short form of UUID
+```json
+[
+    "c1qBUhnS50mXp7hsXSjnig"
+]
+```
+>if shortUid attribute is set others mentioned below will always be ignored 
+
+`upperCase=true` - format UUID into UPPER CASE output
 ```json
 [
     "514EF2A2-73F5-4851-A39D-0CAB68E090F1"
-]
-```
-
-`base64Encode=false` - encode each UUID into base64 string
-```json
-[
-    "ezE4MDFCNzYyLTYzRjQtNEMxMC1BMDZCLUQ4QTYyOTlBNUE5MX0"
 ]
 ```
 
@@ -56,4 +57,5 @@ will provide you response consists 5 UUID
 
 ## Live Demo
 
-`curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid/10/?upperCase=true&base64Encode=false&registryFormat=true`
+`curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid/7/?shortUid=true`
+`curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET https://guid-service.azurewebsites.net/guid/3/?upperCase=true&registryFormat=true`

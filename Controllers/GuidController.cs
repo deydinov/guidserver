@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GuidService.Controllers
@@ -17,52 +18,52 @@ namespace GuidService.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> Get([FromQuery] bool upperCase = false, [FromQuery] bool base64Encode = false, [FromQuery] bool registryFormat = false)
+        public IEnumerable<string> Get([FromQuery] bool upperCase = false, [FromQuery] bool shortUid = false, [FromQuery] bool registryFormat = false)
         {
             return GenerateGuids(upperCase: upperCase,
-                                 base64Encode: base64Encode,
+                                 shortUid: shortUid,
                                  registryFormat: registryFormat);
         }
 
         [HttpGet]
         [Route("{number}")]
-        public IEnumerable<string> Get([FromRoute]int number, [FromQuery] bool upperCase = false, [FromQuery] bool base64Encode = false, [FromQuery] bool registryFormat = false)
+        public IEnumerable<string> Get([FromRoute]int number, [FromQuery] bool upperCase = false, [FromQuery] bool shortUid = false, [FromQuery] bool registryFormat = false)
         {
             return GenerateGuids(number: number,
                                  upperCase: upperCase,
-                                 base64Encode: base64Encode,
+                                 shortUid: shortUid,
                                  registryFormat: registryFormat);
         }
 
 
-        private IEnumerable<string> GenerateGuids(int number = 1, bool upperCase = false, bool base64Encode = false, bool registryFormat = false)
+        private IEnumerable<string> GenerateGuids(int number = 1, bool upperCase = false, bool shortUid = false, bool registryFormat = false)
         {
             return Enumerable.Range(1, number <= 100 ? number : 100)
-                .Select(index => GetGuid(upperCase, base64Encode, registryFormat))
+                .Select(index => GetGuid(upperCase, shortUid, registryFormat))
                 .ToArray();
         }
 
-        private string GetGuid(bool upperCase = false, bool base64Encode = false, bool registryFormat = false)
+        private string GetGuid(bool upperCase = false, bool shortUid = false, bool registryFormat = false)
         {
-            var guid = Guid.NewGuid().ToString();
+            var guid = Guid.NewGuid();
+            var uuid = guid.ToString();
+
+            if (shortUid)
+            {
+                return Regex.Replace(Convert.ToBase64String(guid.ToByteArray()), "[/+=]", "");
+            }
 
             if (upperCase)
             {
-                guid = guid.ToUpper();
+                uuid = uuid.ToUpper();
             }
 
             if (registryFormat)
             {
-                guid = "{" + $"{guid}" + "}";
+                uuid = "{" + $"{uuid}" + "}";
             }
 
-            if (base64Encode)
-            {
-                var bytes = Encoding.UTF8.GetBytes(guid);
-                guid = Convert.ToBase64String(bytes).TrimEnd('=');
-            }
-
-            return guid;
+            return uuid;
         }
     }
 }
